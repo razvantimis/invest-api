@@ -9,7 +9,7 @@ defmodule Invest.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Invest.Repo,
+      # Invest.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Invest.PubSub}
       # Start a worker by calling: Invest.Worker.start_link(arg)
