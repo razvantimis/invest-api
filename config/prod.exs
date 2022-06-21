@@ -10,8 +10,10 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :invest_web, InvestWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
+  version: Mix.Project.config[:version]
+  secret_key_base: "${SECRET_KEY_BASE}",
 
 # ## SSL Support
 #
@@ -49,3 +51,4 @@ config :invest_web, InvestWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
+import_config "prod.secret.exs"
