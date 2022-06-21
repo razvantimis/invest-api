@@ -1,5 +1,6 @@
 defmodule InvestWeb.Router do
   use InvestWeb, :router
+  import Plug.BasicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,6 +13,10 @@ defmodule InvestWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :auth do
+    plug :basic_auth, username: "admin", password: "razvan"
   end
 
   scope "/", InvestWeb do
@@ -32,14 +37,13 @@ defmodule InvestWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
+  import Phoenix.LiveDashboard.Router
 
-      live_dashboard "/dashboard", metrics: InvestWeb.Telemetry
-    end
+  scope "/" do
+    pipe_through [:browser, :auth]
+
+    live_dashboard "/dashboard", metrics: InvestWeb.Telemetry
   end
 
   # Enables the Swoosh mailbox preview in development.
