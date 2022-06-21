@@ -13,7 +13,7 @@ config :invest_web, InvestWeb.Endpoint,
   url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   version: Mix.Project.config[:version],
-  secret_key_base: "${SECRET_KEY_BASE}",
+  secret_key_base: "${SECRET_KEY_BASE}"
 
 # ## SSL Support
 #
