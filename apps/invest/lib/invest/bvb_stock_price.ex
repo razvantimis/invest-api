@@ -1,4 +1,4 @@
-defmodule BvbStockPrice do
+defmodule Invest.BvbStockPrice do
   defp fetch_stock_page(symbol) do
     url =
       "https://www.bvb.ro/FinancialInstruments/Details/FinancialInstrumentsDetails.aspx?s=#{symbol}"

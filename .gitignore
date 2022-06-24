@@ -24,3 +24,5 @@ erl_crash.dump
 
 # any secrets
 *.secret.*
+thinking/data
+__pycache__

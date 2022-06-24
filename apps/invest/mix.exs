@@ -39,10 +39,11 @@ defmodule Invest.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:jason, "~> 1.2"},
       {:swoosh, "~> 1.3"},
       {:httpoison, "~> 1.8"},
       {:floki, "~> 0.32.0"},
+      {:erlport, "~> 0.10.1"},
+      {:jason, "~> 1.3"},
     ]
   end
 

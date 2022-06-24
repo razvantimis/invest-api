@@ -11,9 +11,10 @@ defmodule Invest.Application do
       # Start the Ecto repository
       # Invest.Repo,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Invest.PubSub}
+      {Phoenix.PubSub, name: Invest.PubSub},
       # Start a worker by calling: Invest.Worker.start_link(arg)
       # {Invest.Worker, arg}
+      Invest.PythonServer,
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Invest.Supervisor)
