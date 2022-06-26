@@ -1,2 +1,2 @@
-https://github.com/gliderlabs/herokuish/tree/v0.3.36/buildpacks/buildpack-erlang
-https://github.com/gliderlabs/herokuish/tree/v0.3.36/buildpacks/buildpack-python
+hashnuke/elixir
+heroku-buildpack-python
