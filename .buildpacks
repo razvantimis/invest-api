@@ -1,2 +1,3 @@
-hashnuke/elixir
-heroku-buildpack-python
+https://github.com/gigalixir/heroku-buildpack-multi
+https://github.com/gigalixir/gigalixir-buildpack-mix
+heroku/python
