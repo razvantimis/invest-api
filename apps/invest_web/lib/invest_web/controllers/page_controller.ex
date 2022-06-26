@@ -6,7 +6,7 @@ defmodule InvestWeb.PageController do
   end
 
   def fetch_stock_price(conn, %{"symbol" => symbol}) do
-    result = InvestData.PythonServer.cast_function(symbol)
+    result = InvestData.PythonApi.fetch_stock_price(symbol)
     json(conn, result)
   end
 end

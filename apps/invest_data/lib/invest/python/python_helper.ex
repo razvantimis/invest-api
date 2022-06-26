@@ -4,13 +4,10 @@ defmodule InvestData.PythonHelper do
     :python.start([{:python_path, path}, {:python, version}])
   end
 
-  def call_instance(pid, module, function, args \\ []) do
-    :python.call(pid, module, function, args)
+  def call_instance(pid, function, args \\ []) do
+    :python.call(pid, :elixir_handler, function, args)
   end
 
-  def cast_instance(pid, args) do
-    :python.cast(pid, args)
-  end
 
   def stop_instance(pid) do
     :python.stop(pid)

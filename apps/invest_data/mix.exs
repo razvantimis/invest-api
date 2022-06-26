@@ -44,6 +44,7 @@ defmodule InvestData.MixProject do
       {:floki, "~> 0.32.0"},
       {:erlport, "~> 0.10.1"},
       {:jason, "~> 1.3"},
+      {:poolboy, "~> 1.5.2"}
     ]
   end
 

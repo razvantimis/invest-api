@@ -14,9 +14,18 @@ defmodule InvestData.Application do
       {Phoenix.PubSub, name: InvestData.PubSub},
       # Start a worker by calling: InvestData.Worker.start_link(arg)
       # {Invest.Worker, arg}
-      InvestData.PythonServer,
+      :poolboy.child_spec(:worker, python_poolboy_config())
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Invest.Supervisor)
+  end
+
+  defp python_poolboy_config do
+    [
+      {:name, {:local, :worker}},
+      {:worker_module, InvestData.PythonWorker},
+      {:size, 5},
+      {:max_overflow, 0}
+    ]
   end
 end
