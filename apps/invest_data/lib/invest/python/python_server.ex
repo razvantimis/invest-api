@@ -1,30 +1,37 @@
-defmodule Invest.PythonServer do
+defmodule InvestData.PythonServer do
   use GenServer
-  alias Invest.PythonHelper
+  alias InvestData.PythonHelper
+  require Logger
+  @timeout 10_000
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
 
   def init(_) do
-    {:ok, pid} =
-      [:code.priv_dir(:invest), "python"]
+    path =
+      [:code.priv_dir(:invest_data), "python"]
       |> Path.join()
       |> to_charlist()
-      |> PythonHelper.start_instance('python3')
 
-    # register this process as the message handler
-    PythonHelper.call_instance(pid, :elixir_handler, :register_handler, [self()])
-    {:ok, pid}
+    with {:ok, pid} <- PythonHelper.start_instance(path, 'python3') do
+      Logger.info("[#{__MODULE__}] Started python worker")
+      # register this process as the message handler
+      PythonHelper.call_instance(pid, :elixir_handler, :register_handler, [self()])
+
+      {:ok, pid}
+    end
+
   end
 
   def call_function(module, function, args) do
     GenServer.call(__MODULE__, {:call_function, module, function, args})
   end
 
+  @impl true
   def handle_call({:call_function, module, function, args}, _from, pid) do
     result = PythonHelper.call_instance(pid, module, function, args)
-    {:reply, result, pid}
+    {:reply, {:ok, result}, pid}
   end
 
   def cast_function(args) do
@@ -45,5 +52,4 @@ defmodule Invest.PythonServer do
     # end
     {:noreply, pid}
   end
-
 end

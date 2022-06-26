@@ -1,4 +1,4 @@
-defmodule Invest do
+defmodule InvestData do
   @moduledoc """
   Invest keeps the contexts that define your domain
   and business logic.

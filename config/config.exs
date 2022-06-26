@@ -10,8 +10,8 @@
 import Config
 
 # Configure Mix tasks and generators
-config :invest,
-  ecto_repos: [Invest.Repo]
+config :invest_data,
+  ecto_repos: [InvestData.Repo]
 
 # Configures the mailer
 #
@@ -20,20 +20,20 @@ config :invest,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :invest, Invest.Mailer, adapter: Swoosh.Adapters.Local
+config :invest_data, InvestData.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
 config :invest_web,
-  ecto_repos: [Invest.Repo],
+  ecto_repos: [InvestData.Repo],
   generators: [context_app: :invest]
 
 # Configures the endpoint
 config :invest_web, InvestWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: InvestWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Invest.PubSub,
+  pubsub_server: InvestData.PubSub,
   live_view: [signing_salt: "s2HYI5gm"]
 
 # Configure esbuild (the version is required)

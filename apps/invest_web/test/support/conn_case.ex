@@ -32,7 +32,7 @@ defmodule InvestWeb.ConnCase do
   end
 
   setup tags do
-    Invest.DataCase.setup_sandbox(tags)
+    InvestData.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

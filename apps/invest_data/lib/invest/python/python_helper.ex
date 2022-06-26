@@ -1,4 +1,4 @@
-defmodule Invest.PythonHelper do
+defmodule InvestData.PythonHelper do
 
   def start_instance(path, version \\ 'python') do
     :python.start([{:python_path, path}, {:python, version}])

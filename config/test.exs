@@ -5,7 +5,7 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :invest, Invest.Repo,
+config :invest_data, Invest.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -24,7 +24,7 @@ config :invest_web, InvestWeb.Endpoint,
 config :logger, level: :warn
 
 # In test we don't send emails.
-config :invest, Invest.Mailer, adapter: Swoosh.Adapters.Test
+config :invest_data, Invest.Mailer, adapter: Swoosh.Adapters.Test
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime

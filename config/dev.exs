@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :invest, Invest.Repo,
+config :invest_data, InvestData.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",

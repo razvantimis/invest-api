@@ -1,4 +1,4 @@
-defmodule Invest.Application do
+defmodule InvestData.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -11,10 +11,10 @@ defmodule Invest.Application do
       # Start the Ecto repository
       # Invest.Repo,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Invest.PubSub},
-      # Start a worker by calling: Invest.Worker.start_link(arg)
+      {Phoenix.PubSub, name: InvestData.PubSub},
+      # Start a worker by calling: InvestData.Worker.start_link(arg)
       # {Invest.Worker, arg}
-      Invest.PythonServer,
+      InvestData.PythonServer,
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Invest.Supervisor)

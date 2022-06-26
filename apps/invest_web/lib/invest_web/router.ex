@@ -26,9 +26,10 @@ defmodule InvestWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", InvestWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", InvestWeb do
+    pipe_through :api
+    get "/stock-price/:symbol", PageController, :fetch_stock_price
+  end
 
   # Enables LiveDashboard only for development
   #

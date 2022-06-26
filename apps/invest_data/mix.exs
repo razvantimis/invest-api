@@ -1,9 +1,9 @@
-defmodule Invest.MixProject do
+defmodule InvestData.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :invest,
+      app: :invest_data,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -22,7 +22,7 @@ defmodule Invest.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Invest.Application, []},
+      mod: {InvestData.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
