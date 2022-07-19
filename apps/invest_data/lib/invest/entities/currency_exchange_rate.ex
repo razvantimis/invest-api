@@ -5,7 +5,7 @@ defmodule InvestData.Entities.CurrencyExchangeRate do
 
   collection "currencyExchangeRate" do
     attribute(:from_currency, String.t())
-    attribute(:to_Currency, String.t())
+    attribute(:to_currency, String.t())
     attribute(:date, DateTime.t())
     attribute(:rate, Decimal.t())
   end
