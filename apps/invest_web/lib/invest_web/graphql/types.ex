@@ -7,6 +7,13 @@ defmodule InvestWeb.Graphql.Schema.Types do
     field :price, :float
   end
 
+  object :currency_exchange_rate do
+    field :from_currency, :string
+    field :to_currency, :string
+    field :rate, :float
+    field :date, :datetime
+  end
+
   enum :country_type do
     value :RO, as: "RO"
     value :US, as: "US"
