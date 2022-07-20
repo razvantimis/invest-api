@@ -126,9 +126,9 @@ defmodule InvestData.StockDBSync do
 
   defp fetch_stock_price_from_web(stock) do
     Logger.debug(
-      "[Start] StockScraper.fetch_stock_price_from_web(#{stock.exchange}:#{stock.symbol})"
+      "[Start] StockScraper.fetch_stock_price_from_web(#{stock.country}:#{stock.symbol})"
     )
-    case StockScraper.fetch_stock_price(stock.exchange, stock.symbol) do
+    case StockScraper.fetch_stock_price(stock.country, stock.symbol) do
       {:ok, result} ->
         result
         |> Enum.map(
@@ -141,7 +141,7 @@ defmodule InvestData.StockDBSync do
 
       {:error, result} ->
         Logger.error(
-          "[Error] StockScraper.fetch_stock_price_from_web(#{stock.exchange}:#{stock.symbol})"
+          "[Error] StockScraper.fetch_stock_price_from_web(#{stock.country}:#{stock.symbol})"
         )
 
         result

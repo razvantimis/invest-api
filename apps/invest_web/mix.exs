@@ -50,7 +50,10 @@ defmodule InvestWeb.MixProject do
       {:gettext, "~> 0.18"},
       {:invest_data, in_umbrella: true},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:absinthe, "~> 1.6.6"},
+      {:absinthe_plug, "~> 1.5"},
+      {:decimal, "~> 2.0"}
     ]
   end
 

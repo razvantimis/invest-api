@@ -1,15 +1,15 @@
 defmodule InvestData.StockUtils do
-  def create_symbol(%{exchange: exchange, symbol: symbol}) do
-    normalize_exchange = exchange |> String.upcase()
+  def create_symbol(%{country: country, symbol: symbol}) do
+    normalize_country = country |> String.upcase()
     normalize_symbol = symbol |> String.upcase()
-    "#{normalize_exchange}:#{normalize_symbol}"
+    "#{normalize_country}:#{normalize_symbol}"
   end
 
-  @spec parse_symbol(binary()) :: %{:exchange => binary(), :symbol => binary()}
+  @spec parse_symbol(binary()) :: %{:country => binary(), :symbol => binary()}
   def parse_symbol(symbol) do
     symbol
     |> String.replace(["(", ")"], "")
     |> String.split(":")
-    |> then(fn [exchange, symbol] -> %{exchange: exchange, symbol: symbol} end)
+    |> then(fn [country, symbol] -> %{country: country, symbol: symbol} end)
   end
 end

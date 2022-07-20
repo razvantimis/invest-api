@@ -25,10 +25,12 @@ defmodule InvestWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", InvestWeb do
+  scope "/api" do
     pipe_through :api
-    get "/stock-price", ApiController, :fetch_stock_price
-    get "/exchange-rates", ApiController, :fetch_exchange_rates
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: InvestWeb.Schema
+
+    forward "/", Absinthe.Plug, schema: InvestWeb.Schema
   end
 
   # Enables LiveDashboard only for development
