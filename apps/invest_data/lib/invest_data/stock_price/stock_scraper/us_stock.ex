@@ -33,7 +33,7 @@ defmodule InvestData.StockScraper.UsStock do
             {:ok, date} = Date.from_iso8601(Enum.at(row, 0))
 
             stock_price = %{
-              date:  DateTime.new!(date, Time.new!(0, 0, 0, 0)),
+              date:  date,
               # adj_close
               price: Enum.at(row, 5) |> String.to_float()
               # open: Enum.at(row, 1) |> String.to_float(),
