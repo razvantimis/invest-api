@@ -3,7 +3,13 @@ defmodule InvestData.CurrencyExchange.DBSync do
     Sync between DB and price from web scraper
   """
   require Logger
-  alias InvestData.{Repo, Entities.CurrencyExchangeRate, CurrencyExchange.Scrapper}
+
+  alias InvestData.{
+    Repo,
+    Entities.CurrencyExchangeRate,
+    CurrencyExchange.Scrapper,
+    Utils.DateHelper
+  }
 
   def fetch_currency_exchange_rates() do
     currency_exchange_rates_db = get_currency_exchange_rate_from_db()
@@ -40,15 +46,15 @@ defmodule InvestData.CurrencyExchange.DBSync do
   end
 
   defp get_currency_exchange_rate_from_db() do
-    today = DateTime.utc_now()
-    start_date = today |> DateTime.add(-7 * 60 * 60 * 24, :second)
+    %{:end_date => end_date, :start_date => start_date} =
+      DateHelper.get_last_day_of_week() |> DateHelper.get_start_and_end_of_day()
 
     Repo.aggregate(CurrencyExchangeRate, [
       %{
         "$match" => %{
           date: %{
             "$gte": start_date,
-            "$lte": today
+            "$lte": end_date
           }
         }
       },

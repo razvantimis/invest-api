@@ -2,10 +2,10 @@ defmodule InvestData do
   @moduledoc """
 
   """
-  alias InvestData.{StockDBSync, CurrencyExchange}
+  alias InvestData.{StockPrice, CurrencyExchange}
 
   def fetch_stock_price(symbols) do
-    StockDBSync.fetch_stock_price(symbols)
+    StockPrice.DBSync.fetch_stock_price(symbols)
   end
 
   def fetch_exchange_rates() do

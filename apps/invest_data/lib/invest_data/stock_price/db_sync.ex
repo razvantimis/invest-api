@@ -1,9 +1,9 @@
-defmodule InvestData.StockDBSync do
+defmodule InvestData.StockPrice.DBSync do
   @moduledoc """
     Sync between DB and price from web scraper
   """
   require Logger
-  alias InvestData.{Repo, StockScraper, StockUtils, Entities.StockPrice}
+  alias InvestData.{Repo, StockScraper, StockUtils, Entities.StockPrice, Utils.DateHelper}
 
   def fetch_stock_price(stock_list) do
     stock_price_db = get_stock_price_from_db(stock_list)
@@ -86,8 +86,9 @@ defmodule InvestData.StockDBSync do
 
   defp get_stock_price_from_db(stock_list) do
     symbols = stock_list |> Enum.map(&StockUtils.create_symbol(&1))
-    today = DateTime.utc_now()
-    start_date = today |> DateTime.add(-7 * 60 * 60 * 24, :second)
+
+    %{:end_date => end_date, :start_date => start_date} =
+      DateHelper.get_last_day_of_week() |> DateHelper.get_start_and_end_of_day()
 
     Repo.aggregate(StockPrice, [
       %{
@@ -97,7 +98,7 @@ defmodule InvestData.StockDBSync do
           },
           date: %{
             "$gte": start_date,
-            "$lt": today
+            "$lt": end_date
           }
         }
       },
@@ -128,6 +129,7 @@ defmodule InvestData.StockDBSync do
     Logger.debug(
       "[Start] StockScraper.fetch_stock_price_from_web(#{stock.country}:#{stock.symbol})"
     )
+
     case StockScraper.fetch_stock_price(stock.country, stock.symbol) do
       {:ok, result} ->
         result

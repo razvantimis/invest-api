@@ -13,8 +13,8 @@ defmodule InvestWeb.Schema do
       resolve(&Resolvers.Stock.get_last_stock_price/3)
     end
 
-    @desc "Get exchange rate for euro"
-    field :currency_exchange_rate, list_of(:currency_exchange_rate) do
+    @desc "Get last exchange rate for euro"
+    field :last_currency_exchange_rate_for_euro, list_of(:currency_exchange_rate) do
       resolve(&Resolvers.Exchange.get_currecy_exchange_rates/3)
     end
   end
