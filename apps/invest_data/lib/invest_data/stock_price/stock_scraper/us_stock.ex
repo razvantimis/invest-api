@@ -2,7 +2,7 @@ defmodule InvestData.StockScraper.UsStock do
   require Logger
 
   @doc """
-    Fetch last 7 days stock price
+    Fetch last stock price
     InvestData.UsStockScraper.fetch_stock_price("MMM")
   """
   def fetch_stock_price(symbol) do
