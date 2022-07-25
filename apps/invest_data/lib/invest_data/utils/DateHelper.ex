@@ -24,4 +24,10 @@ defmodule InvestData.Utils.DateHelper do
       :end_date => get_end_of_day(date)
     }
   end
+
+  # defp format_date(date) do
+  #   [date.year, date.month, date.day]
+  #   |> Enum.map(&to_string/1)
+  #   |> Enum.map_join("-", &String.pad_leading(&1, 2, "0"))
+  # end
 end

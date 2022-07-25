@@ -47,7 +47,7 @@ defmodule InvestData.StockPrice.DBSync do
 
   def polling_stock_price() do
     all_symbols =
-      get_lastest_stock_prices()
+      get_all_stocks()
       |> Enum.map(&StockUtils.parse_symbol(&1.symbol))
 
     stock_list =
@@ -60,7 +60,7 @@ defmodule InvestData.StockPrice.DBSync do
     end
   end
 
-  defp get_lastest_stock_prices() do
+  defp get_all_stocks() do
     Repo.aggregate(StockPrice, [
       %{
         "$group" => %{
