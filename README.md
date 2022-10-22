@@ -1,4 +1,4 @@
-# Invest Platform
+# Invest Api ( Elixir, GraphQL, MongoDB )
 
 Free api for stock data which will find the stock data in the web and caching them in mongodb
 
